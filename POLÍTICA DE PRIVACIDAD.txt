@@ -1,0 +1,28 @@
+POLÍTICA DE PRIVACIDAD
+
+Fecha de última actualización: 24-12-2024
+
+Esta política de privacidad explica cómo recopilamos y usamos la información de los usuarios cuando interactúan con nuestro servicio. Al utilizar nuestro servicio, usted acepta las prácticas descritas en esta política.
+
+1. INFORMACIÓN QUE RECOPILAMOS
+   Recopilamos únicamente la siguiente información:
+   - Datos relacionados con el inicio de sesión del usuario a través de la API, como **usuario.info.basic** (información básica del usuario).
+   - Permisos solicitados para **video.publicar** (publicación de contenido) y **subir video** (subir videos a la plataforma).
+
+2. CÓMO UTILIZAMOS LA INFORMACIÓN
+   La información recopilada se utiliza únicamente para los siguientes fines:
+   - Proveer acceso al servicio de publicación de contenido.
+   - Permitir la carga y publicación de videos a través de la API.
+
+3. COMPARTICIÓN DE LA INFORMACIÓN
+   No vendemos, alquilamos ni compartimos su información personal con terceros. La información se utiliza exclusivamente para proporcionar los servicios descritos y no se almacena de forma permanente.
+
+4. SEGURIDAD DE LA INFORMACIÓN
+   Implementamos medidas razonables para proteger la información proporcionada por los usuarios. No obstante, no podemos garantizar una seguridad absoluta debido a la naturaleza de Internet.
+
+5. CAMBIOS EN ESTA POLÍTICA
+   Nos reservamos el derecho de actualizar esta política de privacidad en cualquier momento. Los cambios serán publicados en esta página, y si los cambios son significativos, se notificará a los usuarios.
+
+6. CONTACTO
+   Si tiene alguna pregunta sobre esta política de privacidad, puede ponerse en contacto con nosotros a través del formulario de contacto disponible en nuestra aplicación o sitio web.
+
