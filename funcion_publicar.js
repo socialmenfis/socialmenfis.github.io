@@ -66,7 +66,7 @@ function publicar_imagen()
         setTimeout(function ()
         {
 
-            window.location.href = "https://soluciones-polaris.github.io/social/index.html";
+            window.location.href = "https://socialmenfis.github.io/";
         }, 3000); // Redirige después de 3 segundos
 
 
