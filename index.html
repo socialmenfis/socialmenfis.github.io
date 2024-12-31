@@ -102,7 +102,7 @@
             });
 
         }
-    }, 500); // Verifica cada 500ms
+    }, 300); // Verifica cada 
 
 
 
@@ -110,7 +110,12 @@
 }
 
 
-        window.onload = getCodeFromURL;
+        window.onload = function() {
+        if (localStorage.getItem("refresh_token") === null || localStorage.getItem("refresh_token") === undefined) {
+            getCodeFromURL();
+        }
+    };
+
     </script>
 
     <!-- Incluir JS de Bootstrap 5 -->
