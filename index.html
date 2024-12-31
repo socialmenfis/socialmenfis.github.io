@@ -79,7 +79,7 @@
         fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?code=${encodedCode}`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
+                    console.log('Error en la respuesta del servidor');
                 }
                 return response.text();
             })
@@ -91,7 +91,7 @@
                     localStorage.setItem("refresh_token", datos.refresh_token)
                     permisos.style="display: none;" 
                     publicador_tik.style="display: block"
-                    // location.assign("https://socialmenfis.github.io/")
+                    location.assign("https://socialmenfis.github.io/")
                 }
                 
                 // Puedes procesar la respuesta aquí si es necesario
