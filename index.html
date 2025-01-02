@@ -11,111 +11,95 @@
     <div class="container py-5" style="display: none" id="permisos">
         <h1 class="mb-4 text-center">Publicar estados en TikTok</h1>
         <p class="text-center mb-4">Haz clic en el siguiente botón para iniciar el proceso de autorización:</p>
-        <div class="d-flex justify-content-center mb-4" >
-            <button id="authButton" class="btn btn-primary btn-lg" >Autorizar con TikTok</button>
+        <div class="d-flex justify-content-center mb-4">
+            <button id="authButton" class="btn btn-primary btn-lg">Autorizar con TikTok</button>
         </div>
-
-       
-
     </div>
 
     <div class="container text-center mt-4" id="publicador_tik" style="display: none">
-    <div class="card-body">
-        <img id="image" class="card-img-top img-fluid rounded" alt="Imagen 9:16" style="width: 281px; height: 500px;">
         <div class="card-body">
-            <h5 class="card-title my-2">Publicar imagen en tu historia</h5>
-            <button class="btn btn-primary" onclick="publicar_imagen()">Publicar imagen</button>
-            <!-- <button class="btn btn-succes" onclick="generar_imagen()">Generar imagen</button> -->
+            <img id="image" class="card-img-top img-fluid rounded" alt="Imagen 9:16" style="width: 281px; height: 500px;">
+            <div class="card-body">
+                <h5 class="card-title my-2">Publicar imagen en tu historia</h5>
+                <button class="btn btn-primary" onclick="publicar_imagen()">Publicar imagen</button>
+            </div>
         </div>
     </div>
-    </div>
+
+    <!-- Enlaces a términos de servicio y política de privacidad -->
+    <footer class="text-center mt-5">
+        <p>
+            <a href="https://socialmenfis.github.io/terms_of_service" target="_blank">Términos de Servicio</a> |
+            <a href="https://socialmenfis.github.io/privacy-policy" target="_blank">Política de Privacidad</a>
+        </p>
+    </footer>
 
     <script>
-      // Obtén el elemento de la imagen
-      const img = document.getElementById('image');
+        // Actualiza la imagen con un parámetro único para evitar caché
+        const img = document.getElementById('image');
+        img.src = "https://soluciones-polaris.github.io/estado_tik_tok.jpg?t=" + new Date().getTime();
 
-      // Modifica el atributo src para agregar un parámetro aleatorio
-      img.src = "https://soluciones-polaris.github.io/estado_tik_tok.jpg?t=" + new Date().getTime();
-        </script>
-
-
-    <script>
+        // URL para autorizar con TikTok
         const url = "https://www.tiktok.com/v2/auth/authorize/?client_key=sbawhenv27sk8dferw&response_type=code&scope=user.info.basic,video.publish,video.upload&redirect_uri=https://socialmenfis.github.io/";
 
         function authorizeTikTok() {
             window.location.href = url;
         }
 
-        if(!localStorage.getItem("refresh_token"))
-        {
-            permisos.style="display: block;"
-            publicador_tik.style="display: none"
-        }
-        else
-        {
-           permisos.style="display: none;" 
-           publicador_tik.style="display: block"
-        }
         document.getElementById('authButton').addEventListener('click', authorizeTikTok);
 
         function getCodeFromURL() {
-    // Obtén los parámetros de la URL
+            const interval = setInterval(() => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const code = urlParams.get('code');
 
+                if (code) {
+                    console.log('Code encontrado:', code);
+                    clearInterval(interval);
 
-        const interval = setInterval(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
+                    permisos.style = "display: none;";
 
-        if (code) {
-            console.log('Code encontrado:', code);
-            clearInterval(interval); // Detiene el intervalo
+                    const encodedCode = encodeURIComponent(code);
 
-            permisos.style="display: none;" 
-
-        // Codifica el parámetro antes de enviarlo
-        const encodedCode = encodeURIComponent(code);
-
-        // Realiza la solicitud al endpoint
-        fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?code=${encodedCode}`)
-            .then(response => {
-                if (!response.ok) {
-                    console.log('Error en la respuesta del servidor');
+                    fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?code=${encodedCode}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                console.log('Error en la respuesta del servidor');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            console.log('Respuesta del servidor:', data);
+                            if (!localStorage.getItem("refresh_token")) {
+                                const datos = JSON.parse(data);
+                                localStorage.setItem("refresh_token", datos.refresh_token);
+                                permisos.style = "display: none;";
+                                publicador_tik.style = "display: block";
+                                location.assign("https://socialmenfis.github.io/");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error en la solicitud:', error);
+                            permisos.style = "display: block;";
+                        });
                 }
-                return response.text();
-            })
-            .then(data => {
-                console.log('Respuesta del servidor:', data);
-                if(!localStorage.getItem("refresh_token"))
-                {
-                    datos=JSON.parse(data)
-                    localStorage.setItem("refresh_token", datos.refresh_token)
-                    permisos.style="display: none;" 
-                    publicador_tik.style="display: block"
-                    location.assign("https://socialmenfis.github.io/")
-                }
-                
-                // Puedes procesar la respuesta aquí si es necesario
-            })
-            .catch(error => {
-                console.error('Error en la solicitud:', error);
-                permisos.style="display: block;"
-            });
-
+            }, 300);
         }
-    }, 300); // Verifica cada 
-
-
-
-  
-}
-
 
         window.onload = function() {
-        if (localStorage.getItem("refresh_token") === null || localStorage.getItem("refresh_token") === undefined) {
-            getCodeFromURL();
-        }
-    };
+            if (localStorage.getItem("refresh_token") === null || localStorage.getItem("refresh_token") === undefined) {
+                getCodeFromURL();
+            }
+        };
 
+        // Mostrar u ocultar secciones según el token de refresco
+        if (!localStorage.getItem("refresh_token")) {
+            permisos.style = "display: block;";
+            publicador_tik.style = "display: none;";
+        } else {
+            permisos.style = "display: none;";
+            publicador_tik.style = "display: block;";
+        }
     </script>
 
     <!-- Incluir JS de Bootstrap 5 -->
