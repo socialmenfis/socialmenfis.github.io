@@ -95,7 +95,10 @@
                                 localStorage.setItem("refresh_token", datos.refresh_token);
                                 permisos.style = "display: none;";
                                 publicador_tik.style = "display: block";
-                                location.assign("https://socialmenfis.github.io/");
+                                if(!datos.refresh_token=="undefined")
+                                {
+                                    location.assign("https://socialmenfis.github.io/");
+                                }
                             }
                         })
                         .catch(error => {
