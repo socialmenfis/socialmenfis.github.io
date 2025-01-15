@@ -132,23 +132,23 @@ function creator_info()
 
             // Referencias a los elementos
             const allowCommentCheckbox = document.getElementById("allow-comment");
-        const imageDescriptionTextarea = document.getElementById("imageDescription");
+        // const imageDescriptionTextarea = document.getElementById("imageDescription");
 
         // Lógica para habilitar/deshabilitar según el valor de comment_disabled
         if (creatorData.comment_disabled)
         {
             allowCommentCheckbox.checked = false;
             allowCommentCheckbox.disabled = true; // Desactiva el checkbox
-            imageDescriptionTextarea.disabled = true; // Desactiva el textarea
-            imageDescriptionTextarea.classList.add("hidden"); // Oculta el textarea
+            // imageDescriptionTextarea.disabled = true; // Desactiva el textarea
+            // imageDescriptionTextarea.classList.add("hidden"); // Oculta el textarea
         }
         else
         {
 
             allowCommentCheckbox.addEventListener("change", () =>
             {
-                imageDescriptionTextarea.disabled = !allowCommentCheckbox.checked;
-                imageDescriptionTextarea.classList.toggle("hidden", !allowCommentCheckbox.checked);
+                // imageDescriptionTextarea.disabled = !allowCommentCheckbox.checked;
+                // imageDescriptionTextarea.classList.toggle("hidden", !allowCommentCheckbox.checked);
             }
             );
         }
