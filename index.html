@@ -111,7 +111,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Aceptar y Publicar</button>
+              <button type="button" class="btn btn-primary" id="btn_aceptar_publicar">Aceptar y Publicar</button>
             </div>
           </div>
         </div>
@@ -215,8 +215,12 @@
     console.log(myModal)
     myModal.show()
 
-       // publicar_imagen(imageTitle,imageDescription)
+    btn_aceptar_publicar.addEventListener("click", ()=>{
+      myModal.hide()
+      publicar_imagen(imageTitle,imageDescription)
+    })
 
+   
       
     });
   </script>
