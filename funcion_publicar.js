@@ -1,4 +1,4 @@
-function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
+function publicar_imagen(imageTitle, imageDescription, nivel_privacyA)
 {
 
     //
@@ -44,7 +44,7 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
     const encodedCode = encodeURIComponent(localStorage.getItem("refresh_token"));
     const title = encodeURIComponent(imageTitle);
     const disable_comment = encodeURIComponent(imageDescription);
-    const nivel_privacy = encodeURIComponent(nivel_privacyA);  
+    const nivel_privacy = encodeURIComponent(nivel_privacyA);
     fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?refresh_token=${encodedCode}&title=${title}&disable_comment=${disable_comment}&nivel_privacy=${nivel_privacy}`)
     .then(response =>
     {
@@ -57,11 +57,11 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
     )
     .then(data =>
     {
-        data=JSON.parse(data)
-        console.log( data);
-        if(data.error.code=="spam_risk_too_many_posts")
+        data = JSON.parse(data)
+            console.log(data);
+        if (data.error.code == "spam_risk_too_many_posts")
         {
-                    var contenido = `
+            var contenido = `
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -77,16 +77,18 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
            
             <h2>${data.error.message}</h2>
         `;
-        document.write(contenido);
+            document.write(contenido);
 
-          setTimeout(function ()
+            setTimeout(function ()
             {
 
                 window.location.href = "https://socialmenfis.github.io/";
             }, 3000);
         }
+        else
+        {
 
-        var contenido = `
+            var contenido = `
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -102,27 +104,28 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
             <h1>Imagen subida!!</h1>
             <h2>La siguiente imagen se  genera en unos minutos</h2>
         `;
-        document.write(contenido);
-        fetch('https://script.google.com/macros/s/AKfycbxbHqkepU93mfDNncePX5pA1qUyDOOS6hVaHMGY1erqQ-oGej69DZsmcHn92j_yJNa-qA/exec')
-        .then(response => response.json()) // Asumiendo que la respuesta es JSON
-        .then(dataN =>
-        {
-            console.log(dataN); // Aquí puedes manejar la respuesta, como imprimirla en consola
+            document.write(contenido);
+            fetch('https://script.google.com/macros/s/AKfycbxbHqkepU93mfDNncePX5pA1qUyDOOS6hVaHMGY1erqQ-oGej69DZsmcHn92j_yJNa-qA/exec')
+            .then(response => response.json()) // Asumiendo que la respuesta es JSON
+            .then(dataN =>
+            {
+                console.log(dataN); // Aquí puedes manejar la respuesta, como imprimirla en consola
+            }
+            )
+            .catch(error =>
+            {
+                console.error('Error en la solicitud:', error);
+            }
+            );
+
+            setTimeout(function ()
+            {
+
+                window.location.href = "https://socialmenfis.github.io/";
+            }, 3000); // Redirige después de 3 segundos
+
+
         }
-        )
-        .catch(error =>
-        {
-            console.error('Error en la solicitud:', error);
-        }
-        );
-
-        setTimeout(function ()
-        {
-
-            window.location.href = "https://socialmenfis.github.io/";
-        }, 3000); // Redirige después de 3 segundos
-
-
     }
     )
     .catch(error =>
