@@ -135,17 +135,21 @@
             if (localStorage.getItem("refresh_token") === null || localStorage.getItem("refresh_token") === undefined) {
                 getCodeFromURL();
             }
+            else
+            {
+                  // Mostrar u ocultar secciones según el token de refresco
+                if (!localStorage.getItem("refresh_token")) {
+                    permisos.style = "display: block;";
+                    publicador_tik.style = "display: none;";
+                } else {
+                    permisos.style = "display: none;";
+                    publicador_tik.style = "display: block;";
+                    // creator_info()
+                }
+            }
         };
 
-        // Mostrar u ocultar secciones según el token de refresco
-        if (!localStorage.getItem("refresh_token")) {
-            permisos.style = "display: block;";
-            publicador_tik.style = "display: none;";
-        } else {
-            permisos.style = "display: none;";
-            publicador_tik.style = "display: block;";
-            // creator_info()
-        }
+      
 
         // Manejar la carga de la imagen
         const uploadForm = document.getElementById('uploadForm');
