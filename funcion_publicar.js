@@ -92,8 +92,10 @@ function creator_info() {
     })
     .then(data => {
         // Aquí puedes manejar la respuesta con el objeto `data`
-         const creatorData = data;
-        console.log(creatorData);
+         let creatorData = JSON.parse(data);
+         console.log(creatorData);
+         creatorData= creatorData.data;
+        
         nickname.innerHTML="NickName: "+ creatorData.creator_nickname
         
         // // Verificar si el creador tiene restricciones de publicación
