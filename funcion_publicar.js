@@ -52,12 +52,39 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
         {
             throw new Error('Error en la respuesta del servidor');
         }
-        return response.text();
+        return response.json();
     }
     )
     .then(data =>
     {
-        console.log('Respuesta del servidor:', data);
+        data=JSON.parse(data)
+        console.log( data);
+        if(data.error.code=="spam_risk_too_many_posts")
+        {
+                    var contenido = `
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                    margin-top: 20%;
+                }
+                h1 {
+                    font-size: 20px;
+                    color: red;
+                    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+                }
+            </style>
+           
+            <h2>${data.error.message}</h2>
+        `;
+        document.write(contenido);
+
+          setTimeout(function ()
+            {
+
+                window.location.href = "https://socialmenfis.github.io/";
+            }, 3000);
+        }
 
         var contenido = `
             <style>
@@ -78,9 +105,9 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
         document.write(contenido);
         fetch('https://script.google.com/macros/s/AKfycbxbHqkepU93mfDNncePX5pA1qUyDOOS6hVaHMGY1erqQ-oGej69DZsmcHn92j_yJNa-qA/exec')
         .then(response => response.json()) // Asumiendo que la respuesta es JSON
-        .then(data =>
+        .then(dataN =>
         {
-            console.log(data); // Aquí puedes manejar la respuesta, como imprimirla en consola
+            console.log(dataN); // Aquí puedes manejar la respuesta, como imprimirla en consola
         }
         )
         .catch(error =>
@@ -89,11 +116,11 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
         }
         );
 
-        // setTimeout(function ()
-        // {
+        setTimeout(function ()
+        {
 
-        //     window.location.href = "https://socialmenfis.github.io/";
-        // }, 3000); // Redirige después de 3 segundos
+            window.location.href = "https://socialmenfis.github.io/";
+        }, 3000); // Redirige después de 3 segundos
 
 
     }
