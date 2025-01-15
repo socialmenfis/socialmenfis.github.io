@@ -2,7 +2,7 @@ function publicar_imagen(imageTitle, imageDescription)
 {
     
     // "By posting, you agree to TikTok's Music Usage Confirmation"
-    
+
     var contenido = `
             <style>
                 body {
@@ -105,7 +105,8 @@ function creator_info()
         // revisar intentalo mas tarde y desactivar todo
         creatorData = creatorData.data;
 
-        nickname.innerHTML = "NickName: " + creatorData.creator_nickname
+        nickname.innerHTML = `<span class="badge text-bg-success text-uppercase">NickName: </span>${creatorData.creator_nickname}` 
+
 
             // // Verificar si el creador tiene restricciones de publicación
             // if (creatorData.stitch_disabled || creatorData.duet_disabled) {
