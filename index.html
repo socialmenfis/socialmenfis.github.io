@@ -11,6 +11,9 @@
             width: 25px; /* Ancho del checkbox */
             height: 25px; /* Alto del checkbox */
         }
+        .hidden {
+            display: none;
+        }
   </style>
 </head>
 <body class="bg-light container">
@@ -69,7 +72,7 @@
           </label>
 
             <label for="imageDescription" class="form-label badge text-bg-success text-uppercase" >Descripción</label>
-            <textarea id="imageDescription" class="form-control" rows="3" placeholder="Escribe una descripción"></textarea>
+            <textarea id="imageDescription" class="form-control" rows="3" placeholder="Escribe una descripción" disabled></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Publicar</button>
         </form>
