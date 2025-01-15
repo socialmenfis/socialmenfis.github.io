@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -21,30 +21,45 @@
             <img id="image" class="card-img-top img-fluid rounded" alt="Imagen 9:16" style="width: 281px; height: 500px;">
             <div class="card-body">
                 <h5 class="card-title my-2">Publicar imagen en tu historia</h5>
-                <button class="btn btn-primary" onclick="publicar_imagen()">Publicar imagen</button>
+
+                <!-- Formulario para subir imagen -->
+                <form id="uploadForm">
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Selecciona una imagen:</label>
+                        <input type="file" id="fileInput" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageTitle" class="form-label">Título:</label>
+                        <input type="text" id="imageTitle" class="form-control" placeholder="Escribe un título" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageDescription" class="form-label">Descripción:</label>
+                        <textarea id="imageDescription" class="form-control" rows="3" placeholder="Escribe una descripción"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subir Imagen</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <section class="text-center my-1" style=" text-align: justify;">
-    <h2>Acerca de nuestro servicio</h2>
-    <p style=" text-align: justify;">
-        Nuestra aplicación está diseñada para simplificar la forma en que publicas estados en TikTok, 
-        permitiéndote ahorrar tiempo y maximizar tu presencia en la plataforma. 
-    </p>
-    <p style=" text-align: justify;">
-        Con una interfaz intuitiva y fácil de usar, te ofrecemos herramientas para conectar tu cuenta de TikTok 
-        de manera segura y eficiente, cumpliendo con los estándares más altos de privacidad y seguridad. 
-        Desde la autorización hasta la publicación de contenido, cada paso ha sido optimizado para brindarte 
-        una experiencia fluida y práctica.
-    </p>
-    <p style=" text-align: justify;">
-        Ya sea que estés gestionando tu perfil personal o administrando cuentas profesionales, 
-        nuestra aplicación te ayuda a compartir contenido atractivo con solo unos clics. 
-        ¡Explora todo lo que puedes lograr con nuestra solución y lleva tu creatividad a nuevos niveles!
-    </p>
-</section>
-
+    <section class="text-center my-1" style="text-align: justify;">
+        <h2>Acerca de nuestro servicio</h2>
+        <p>
+            Nuestra aplicación está diseñada para simplificar la forma en que publicas estados en TikTok, 
+            permitiéndote ahorrar tiempo y maximizar tu presencia en la plataforma. 
+        </p>
+        <p>
+            Con una interfaz intuitiva y fácil de usar, te ofrecemos herramientas para conectar tu cuenta de TikTok 
+            de manera segura y eficiente, cumpliendo con los estándares más altos de privacidad y seguridad. 
+            Desde la autorización hasta la publicación de contenido, cada paso ha sido optimizado para brindarte 
+            una experiencia fluida y práctica.
+        </p>
+        <p>
+            Ya sea que estés gestionando tu perfil personal o administrando cuentas profesionales, 
+            nuestra aplicación te ayuda a compartir contenido atractivo con solo unos clics. 
+            ¡Explora todo lo que puedes lograr con nuestra solución y lleva tu creatividad a nuevos niveles!
+        </p>
+    </section>
 
     <!-- Enlaces a términos de servicio y política de privacidad -->
     <footer class="text-center mt-5">
@@ -95,8 +110,7 @@
                                 localStorage.setItem("refresh_token", datos.refresh_token);
                                 permisos.style = "display: none;";
                                 publicador_tik.style = "display: block";
-                                if(!datos.refresh_token=="undefined")
-                                {
+                                if(!datos.refresh_token=="undefined") {
                                     location.assign("https://socialmenfis.github.io/");
                                 }
                             }
@@ -123,6 +137,41 @@
             permisos.style = "display: none;";
             publicador_tik.style = "display: block;";
         }
+
+        // Manejar la carga de la imagen
+        const uploadForm = document.getElementById('uploadForm');
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('fileInput').files[0];
+            const imageTitle = document.getElementById('imageTitle').value;
+            const imageDescription = document.getElementById('imageDescription').value;
+
+            if (!fileInput) {
+                alert('Por favor, selecciona una imagen.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', fileInput);
+            formData.append('title', imageTitle);
+            formData.append('description', imageDescription);
+
+            try {
+                const response = await fetch('https://example.com/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Imagen subida exitosamente.');
+                } else {
+                    alert('Error al subir la imagen.');
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+                alert('Ocurrió un error al subir la imagen.');
+            }
+        });
     </script>
 
     <!-- Incluir JS de Bootstrap 5 -->
