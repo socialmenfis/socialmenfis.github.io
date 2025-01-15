@@ -14,6 +14,18 @@
         .hidden {
             display: none;
         }
+
+        .info {
+            font-size: 0.9rem;
+            color: gray;
+            margin-top: 5px;
+        }
+        .warning {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
   </style>
 </head>
 <body class="bg-light container">
@@ -77,6 +89,49 @@
 
             <label for="imageDescription" class="form-label badge text-bg-success text-uppercase" >Descripción</label>
             <textarea id="imageDescription" class="form-control hidden" rows="3" placeholder="Escribe una descripción" disabled></textarea>
+            <!-- con  data comercial content-->
+              <h1>Commercial Content Disclosure</h1>
+    <label>
+        <input type="checkbox" id="commercial-toggle">
+        Enable Commercial Content Disclosure
+    </label>
+    <div id="commercial-options" class="hidden">
+        <label>
+            <input type="checkbox" id="your-brand">
+            Your Brand
+        </label>
+        <div class="info">Your photo/video will be labeled as 'Promotional content'</div>
+
+        <label>
+            <input type="checkbox" id="branded-content">
+            Branded Content
+        </label>
+        <div class="info">Your photo/video will be labeled as 'Paid partnership'</div>
+
+        <div id="message" class="info"></div>
+    </div>
+
+    <label>
+        Visibility:
+        <select id="visibility">
+            <option value="public">Public</option>
+            <option value="friends">Friends</option>
+            <option value="private">Only Me</option>
+        </select>
+    </label>
+    <div class="warning hidden" id="visibility-warning">
+        Branded content visibility cannot be set to private.
+    </div>
+
+    <button id="publish-button" disabled>Publish</button>
+
+    <div id="declaration" class="info hidden">
+        By posting, you agree to 
+        <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank">TikTok's Music Usage Confirmation</a>
+        and/or 
+        <a href="https://www.tiktok.com/legal/page/global/bc-policy/en" target="_blank">Branded Content Policy</a>.
+    </div>
+            <!-- fin data conntent brand comercial content -->
           </div>
           <button type="submit" class="btn btn-primary">Publicar</button>
         </form>

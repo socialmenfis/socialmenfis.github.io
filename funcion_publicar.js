@@ -1,9 +1,7 @@
 function publicar_imagen(imageTitle, imageDescription)
 {
-    
 
-
-    // 
+    //
 
     var contenido = `
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -127,47 +125,47 @@ function creator_info()
         // revisar intentalo mas tarde y desactivar todo
         creatorData = creatorData.data;
 
-
-        nickname.innerHTML = `<img src="${creatorData.creator_avatar_url}" class="rounded-circle" alt="Avatar" style="width: 6%; height: 6%;"> <span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}` 
-
-
+        nickname.innerHTML = `<img src="${creatorData.creator_avatar_url}" class="rounded-circle" alt="Avatar" style="width: 6%; height: 6%;"> <span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}`
 
             // Referencias a los elementos
             const allowCommentCheckbox = document.getElementById("allow-comment");
-            const imageDescriptionTextarea = document.getElementById("imageDescription");
+        const imageDescriptionTextarea = document.getElementById("imageDescription");
 
-            // Lógica para habilitar/deshabilitar según el valor de comment_disabled
-            if (creatorData.comment_disabled) {
-                allowCommentCheckbox.checked = false;
-                allowCommentCheckbox.disabled = true; // Desactiva el checkbox
-                imageDescriptionTextarea.disabled = true; // Desactiva el textarea
-                imageDescriptionTextarea.classList.add("hidden"); // Oculta el textarea
-            } else {
-                
-                allowCommentCheckbox.addEventListener("change", () => {
-                    imageDescriptionTextarea.disabled = !allowCommentCheckbox.checked;
-                    imageDescriptionTextarea.classList.toggle("hidden", !allowCommentCheckbox.checked);
-                });
+        // Lógica para habilitar/deshabilitar según el valor de comment_disabled
+        if (creatorData.comment_disabled)
+        {
+            allowCommentCheckbox.checked = false;
+            allowCommentCheckbox.disabled = true; // Desactiva el checkbox
+            imageDescriptionTextarea.disabled = true; // Desactiva el textarea
+            imageDescriptionTextarea.classList.add("hidden"); // Oculta el textarea
+        }
+        else
+        {
+
+            allowCommentCheckbox.addEventListener("change", () =>
+            {
+                imageDescriptionTextarea.disabled = !allowCommentCheckbox.checked;
+                imageDescriptionTextarea.classList.toggle("hidden", !allowCommentCheckbox.checked);
             }
+            );
+        }
 
+        // // Verificar si el creador tiene restricciones de publicación
+        // if (creatorData.stitch_disabled || creatorData.duet_disabled) {
+        //     console.log('El creador tiene restricciones de publicación (stitch o duet).');
+        // }
 
+        // Ejemplo de cómo manejar el caso si el creador no puede hacer más publicaciones
+        // if (data.canPost === false) {
+        //     console.log('El creador no puede hacer más publicaciones en este momento.');
+        //     // Aquí podrías agregar lógica para detener el intento de publicación
+        // }
 
-            // // Verificar si el creador tiene restricciones de publicación
-            // if (creatorData.stitch_disabled || creatorData.duet_disabled) {
-            //     console.log('El creador tiene restricciones de publicación (stitch o duet).');
-            // }
+        // Array con las opciones
+        let privacyOptions = creatorData.privacy_level_options
 
-            // Ejemplo de cómo manejar el caso si el creador no puede hacer más publicaciones
-            // if (data.canPost === false) {
-            //     console.log('El creador no puede hacer más publicaciones en este momento.');
-            //     // Aquí podrías agregar lógica para detener el intento de publicación
-            // }
-
-            // Array con las opciones
-            let privacyOptions = creatorData.privacy_level_options
-
-        // Referencia al elemento select
-        const selectElement = document.getElementById("dynamic_select");
+            // Referencia al elemento select
+            const selectElement = document.getElementById("dynamic_select");
 
         // Agregar opciones dinámicamente
         privacyOptions.forEach(option =>
@@ -187,3 +185,106 @@ function creator_info()
     }
     );
 }
+
+/*brand comarcial content*/
+
+const commercialToggle = document.getElementById('commercial-toggle');
+const yourBrandCheckbox = document.getElementById('your-brand');
+const brandedContentCheckbox = document.getElementById('branded-content');
+const commercialOptions = document.getElementById('commercial-options');
+const message = document.getElementById('message');
+const publishButton = document.getElementById('publish-button');
+const declaration = document.getElementById('declaration');
+const visibilitySelect = document.getElementById('visibility');
+const visibilityWarning = document.getElementById('visibility-warning');
+
+// Toggle Commercial Content Options
+commercialToggle.addEventListener('change', () =>
+{
+    const isChecked = commercialToggle.checked;
+    commercialOptions.classList.toggle('hidden', !isChecked);
+    checkPublishState();
+}
+);
+
+// Update Message and Declaration
+[yourBrandCheckbox, brandedContentCheckbox].forEach(checkbox =>
+{
+    checkbox.addEventListener('change', () =>
+    {
+        let selectedOptions = [];
+        if (yourBrandCheckbox.checked)
+            selectedOptions.push('Promotional content');
+        if (brandedContentCheckbox.checked)
+            selectedOptions.push('Paid partnership');
+
+        if (selectedOptions.length === 0)
+        {
+            message.textContent = "You need to indicate if your content promotes yourself, a third party, or both.";
+            publishButton.disabled = true;
+        }
+        else if (selectedOptions.length === 2)
+        {
+            message.textContent = "Your photo/video will be labeled as 'Paid partnership'.";
+        }
+        else
+        {
+            message.textContent = `Your photo/video will be labeled as '${selectedOptions[0]}'.`;
+        }
+
+        updateDeclaration();
+        checkPublishState();
+    }
+    );
+}
+);
+
+// Visibility Logic
+visibilitySelect.addEventListener('change', () =>
+{
+    if (brandedContentCheckbox.checked && visibilitySelect.value === 'private')
+    {
+        visibilitySelect.value = 'public';
+        visibilityWarning.classList.remove('hidden');
+    }
+    else
+    {
+        visibilityWarning.classList.add('hidden');
+    }
+}
+);
+
+// Update Declaration
+function updateDeclaration()
+{
+    const isYourBrand = yourBrandCheckbox.checked;
+    const isBrandedContent = brandedContentCheckbox.checked;
+    declaration.classList.toggle('hidden', !(isYourBrand || isBrandedContent));
+
+    if (isYourBrand && isBrandedContent)
+    {
+        declaration.innerHTML = `By posting, you agree to
+                    <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank">TikTok's Music Usage Confirmation</a>
+                    and 
+                    <a href="https://www.tiktok.com/legal/page/global/bc-policy/en" target="_blank">Branded Content Policy</a>.`;
+    }
+    else if (isBrandedContent)
+    {
+        declaration.innerHTML = `By posting, you agree to
+                    <a href="https://www.tiktok.com/legal/page/global/bc-policy/en" target="_blank">TikTok's Branded Content Policy</a>
+                    and 
+                    <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank">Music Usage Confirmation</a>.`;
+    }
+    else
+    {
+        declaration.innerHTML = `By posting, you agree to
+                    <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank">TikTok's Music Usage Confirmation</a>.`;
+    }
+}
+
+// Check Publish State
+function checkPublishState()
+{
+    publishButton.disabled = !(commercialToggle.checked && (yourBrandCheckbox.checked || brandedContentCheckbox.checked));
+}
+/*fin brando comenrical content*/
