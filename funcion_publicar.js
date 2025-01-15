@@ -105,7 +105,7 @@ function creator_info()
         // revisar intentalo mas tarde y desactivar todo
         creatorData = creatorData.data;
 
-        nickname.innerHTML = `<span class="badge text-bg-success text-uppercase">NickName: </span>${creatorData.creator_nickname}` 
+        nickname.innerHTML = `<span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}` 
 
 
             // // Verificar si el creador tiene restricciones de publicación
