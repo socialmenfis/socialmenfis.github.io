@@ -125,7 +125,7 @@ function creator_info()
         // revisar intentalo mas tarde y desactivar todo
         creatorData = creatorData.data;
 
-        nickname.innerHTML = `<img src="${creatorData.creator_avatar_url}" class="rounded-circle" alt="Avatar" style="width: 6%; height: 6%;"> <span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}`
+        nickname.innerHTML = `<img src="${creatorData.creator_avatar_url}" class="rounded-circle" alt="Avatar" style="width: 6%; height: 6%;"> <span class="badge text-bg-success text-uppercase">NickName</span> <span class="fw-bold">${creatorData.creator_nickname}</span>`
 
             // Referencias a los elementos
             const allowCommentCheckbox = document.getElementById("allow-comment");
