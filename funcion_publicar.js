@@ -127,7 +127,29 @@ function creator_info()
         // revisar intentalo mas tarde y desactivar todo
         creatorData = creatorData.data;
 
+
         nickname.innerHTML = `<span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}` 
+
+
+    
+            // Referencias a los elementos
+            const allowCommentCheckbox = document.getElementById("allow-comment");
+            const imageDescriptionTextarea = document.getElementById("imageDescription");
+
+            // Lógica para habilitar/deshabilitar según el valor de comment_disabled
+            if (creatorData.comment_disabled) {
+                allowCommentCheckbox.checked = false;
+                allowCommentCheckbox.disabled = true; // Desactiva el checkbox
+                imageDescriptionTextarea.disabled = true; // Desactiva el textarea
+                imageDescriptionTextarea.classList.add("hidden"); // Oculta el textarea
+            } else {
+                
+                allowCommentCheckbox.addEventListener("change", () => {
+                    imageDescriptionTextarea.disabled = !allowCommentCheckbox.checked;
+                    imageDescriptionTextarea.classList.toggle("hidden", !allowCommentCheckbox.checked);
+                });
+            }
+
 
 
             // // Verificar si el creador tiene restricciones de publicación
