@@ -1,176 +1,194 @@
 <!DOCTYPE html> 
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicar estados en TikTok</title>
-    <!-- Incluir Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar estados en TikTok</title>
+  <!-- Incluir Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light container">
-    <div class="container py-5" style="display: none" id="permisos">
-        <h1 class="mb-4 text-center">Publicar estados en TikTok</h1>
-        <p class="text-center mb-4">Haz clic en el siguiente botón para iniciar el proceso de autorización:</p>
-        <div class="d-flex justify-content-center mb-4">
-            <button id="authButton" class="btn btn-primary btn-lg">Autorizar con TikTok</button>
-        </div>
+  <div class="container py-5" style="display: none" id="permisos">
+    <h1 class="mb-4 text-center">Publicar estados en TikTok</h1>
+    <p class="text-center mb-4">Haz clic en el siguiente botón para iniciar el proceso de autorización:</p>
+    <div class="d-flex justify-content-center mb-4">
+      <button id="authButton" class="btn btn-primary btn-lg">Autorizar con TikTok</button>
     </div>
+  </div>
 
-    <div class="container text-center mt-4" id="publicador_tik" style="display: none">
-        <div class="card-body">
-            <img id="image" class="card-img-top img-fluid rounded" alt="Imagen 9:16" style="width: 281px; height: 500px;">
-            <div class="card-body">
-                <h5 class="card-title my-2">Publicar imagen en tu historia</h5>
+  <div class="container text-center mt-4" id="publicador_tik" style="display: none">
+    <div class="card-body">
+      <img id="image" class="card-img-top img-fluid rounded" alt="Imagen 9:16" style="width: 281px; height: 500px;">
+      <div class="card-body">
+        <h5 class="card-title my-2">Publicar imagen en tu historia</h5>
 
-                <div id="nickname">
-                    
-                </div>
-
-
-                <!-- Formulario para subir imagen -->
-                <form id="uploadForm">
-                    <label for="dynamic_select">privacy_level_options</label>
-                    <select id="dynamic_select">
-                        <option value="" disabled selected>Selecciona una opción</option>
-                    </select>
-                    
-                    <div class="mb-3">
-                        <label for="imageTitle" class="form-label">Título:</label>
-                        <input type="text" id="imageTitle" class="form-control" placeholder="Escribe un título" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="imageDescription" class="form-label">Descripción:</label>
-                        <textarea id="imageDescription" class="form-control" rows="3" placeholder="Escribe una descripción"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subir Imagen</button>
-                </form>
+        <div id="nickname">
+            <div class="spinner-grow text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
             </div>
+            <div class="spinner-grow text-secondary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-info" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            
         </div>
+
+
+        <!-- Formulario para subir imagen -->
+        <form id="uploadForm">
+          <label for="dynamic_select">privacy_level_options</label>
+          <select id="dynamic_select">
+            <option value="" disabled selected>Selecciona una opción</option>
+          </select>
+          
+          <div class="mb-3">
+            <label for="imageTitle" class="form-label">Título:</label>
+            <input type="text" id="imageTitle" class="form-control" placeholder="Escribe un título" required>
+          </div>
+          <div class="mb-3">
+            <label for="imageDescription" class="form-label">Descripción:</label>
+            <textarea id="imageDescription" class="form-control" rows="3" placeholder="Escribe una descripción"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Subir Imagen</button>
+        </form>
+      </div>
     </div>
+  </div>
 
-    <section class="text-center my-1" style="text-align: justify;">
-        <h2>Acerca de nuestro servicio</h2>
-        <p>
-            Nuestra aplicación está diseñada para simplificar la forma en que publicas estados en TikTok, 
-            permitiéndote ahorrar tiempo y maximizar tu presencia en la plataforma. 
-        </p>
-        <p>
-            Con una interfaz intuitiva y fácil de usar, te ofrecemos herramientas para conectar tu cuenta de TikTok 
-            de manera segura y eficiente, cumpliendo con los estándares más altos de privacidad y seguridad. 
-            Desde la autorización hasta la publicación de contenido, cada paso ha sido optimizado para brindarte 
-            una experiencia fluida y práctica.
-        </p>
-        <p>
-            Ya sea que estés gestionando tu perfil personal o administrando cuentas profesionales, 
-            nuestra aplicación te ayuda a compartir contenido atractivo con solo unos clics. 
-            ¡Explora todo lo que puedes lograr con nuestra solución y lleva tu creatividad a nuevos niveles!
-        </p>
-    </section>
+  <section class="text-center my-1" style="text-align: justify;">
+    <h2>Acerca de nuestro servicio</h2>
+    <p>
+      Nuestra aplicación está diseñada para simplificar la forma en que publicas estados en TikTok, 
+      permitiéndote ahorrar tiempo y maximizar tu presencia en la plataforma. 
+    </p>
+    <p>
+      Con una interfaz intuitiva y fácil de usar, te ofrecemos herramientas para conectar tu cuenta de TikTok 
+      de manera segura y eficiente, cumpliendo con los estándares más altos de privacidad y seguridad. 
+      Desde la autorización hasta la publicación de contenido, cada paso ha sido optimizado para brindarte 
+      una experiencia fluida y práctica.
+    </p>
+    <p>
+      Ya sea que estés gestionando tu perfil personal o administrando cuentas profesionales, 
+      nuestra aplicación te ayuda a compartir contenido atractivo con solo unos clics. 
+      ¡Explora todo lo que puedes lograr con nuestra solución y lleva tu creatividad a nuevos niveles!
+    </p>
+  </section>
 
-    <!-- Enlaces a términos de servicio y política de privacidad -->
-    <footer class="text-center mt-5">
-        <p>
-            <a href="https://socialmenfis.github.io/terms_of_service" target="_blank">Términos de Servicio</a> |
-            <a href="https://socialmenfis.github.io/privacy-policy" target="_blank">Política de Privacidad</a>
-        </p>
-    </footer>
+  <!-- Enlaces a términos de servicio y política de privacidad -->
+  <footer class="text-center mt-5">
+    <p>
+      <a href="https://socialmenfis.github.io/terms_of_service" target="_blank">Términos de Servicio</a> |
+      <a href="https://socialmenfis.github.io/privacy-policy" target="_blank">Política de Privacidad</a>
+    </p>
+  </footer>
 
-    <script>
-        // Actualiza la imagen con un parámetro único para evitar caché
-        const img = document.getElementById('image');
-        img.src = "https://soluciones-polaris.github.io/estado_tik_tok.jpg?t=" + new Date().getTime();
+  <script>
+    // Actualiza la imagen con un parámetro único para evitar caché
+    const img = document.getElementById('image');
+    img.src = "https://soluciones-polaris.github.io/estado_tik_tok.jpg?t=" + new Date().getTime();
 
-        // URL para autorizar con TikTok
-        const url = "https://www.tiktok.com/v2/auth/authorize/?client_key=aw6vqg0qzkfvnqms&response_type=code&scope=user.info.basic,video.publish,video.upload&redirect_uri=https://socialmenfis.github.io/";
+    // URL para autorizar con TikTok
+    const url = "https://www.tiktok.com/v2/auth/authorize/?client_key=aw6vqg0qzkfvnqms&response_type=code&scope=user.info.basic,video.publish,video.upload&redirect_uri=https://socialmenfis.github.io/";
 
-        function authorizeTikTok() {
-            window.location.href = url;
-        }
+    function authorizeTikTok() {
+      window.location.href = url;
+    }
 
-        document.getElementById('authButton').addEventListener('click', authorizeTikTok);
+    document.getElementById('authButton').addEventListener('click', authorizeTikTok);
 
-        function getCodeFromURL() {
-            const interval = setInterval(() => {
-                const urlParams = new URLSearchParams(window.location.search);
-                const code = urlParams.get('code');
+    function getCodeFromURL() {
+      const interval = setInterval(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
 
-                if (code) {
-                    console.log('Code encontrado:', code);
-                    clearInterval(interval);
+        if (code) {
+          console.log('Code encontrado:', code);
+          clearInterval(interval);
 
-                    permisos.style = "display: none;";
+          permisos.style = "display: none;";
 
-                    const encodedCode = encodeURIComponent(code);
+          const encodedCode = encodeURIComponent(code);
 
-                    fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?code=${encodedCode}`)
-                        .then(response => {
-                            if (!response.ok) {
-                                console.log('Error en la respuesta del servidor');
-                            }
-                            return response.text();
-                        })
-                        .then(data => {
-                            console.log('Respuesta del servidor:', data);
-                            if (!localStorage.getItem("refresh_token")) {
-                                const datos = JSON.parse(data);
-                                localStorage.setItem("refresh_token", datos.refresh_token);
-                                permisos.style = "display: none;";
-                                publicador_tik.style = "display: block";
-                                
-                                
+          fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?code=${encodedCode}`)
+            .then(response => {
+              if (!response.ok) {
+                console.log('Error en la respuesta del servidor');
+              }
+              return response.text();
+            })
+            .then(data => {
+              console.log('Respuesta del servidor:', data);
+              if (!localStorage.getItem("refresh_token")) {
+                const datos = JSON.parse(data);
+                localStorage.setItem("refresh_token", datos.refresh_token);
+                permisos.style = "display: none;";
+                publicador_tik.style = "display: block";
+                
+                
 
-                                if(!datos.refresh_token=="undefined") {
-                                    location.assign("https://socialmenfis.github.io/");
-                                }
-                                else
-                                {
-                                    creator_info()
-                                }
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error en la solicitud:', error);
-                            permisos.style = "display: block;";
-                        });
+                if(!datos.refresh_token=="undefined") {
+                  location.assign("https://socialmenfis.github.io/");
                 }
-            }, 300);
-        }
-
-        window.onload = function() {
-            if (localStorage.getItem("refresh_token") === null || localStorage.getItem("refresh_token") === undefined) {
-                getCodeFromURL();
-            }
-            else
-            {
-                  // Mostrar u ocultar secciones según el token de refresco
-                if (!localStorage.getItem("refresh_token")) {
-                    permisos.style = "display: block;";
-                    publicador_tik.style = "display: none;";
-                } else {
-                    permisos.style = "display: none;";
-                    publicador_tik.style = "display: block;";
-                    creator_info()
+                else
+                {
+                  creator_info()
                 }
-            }
-        };
+              }
+            })
+            .catch(error => {
+              console.error('Error en la solicitud:', error);
+              permisos.style = "display: block;";
+            });
+        }
+      }, 300);
+    }
+
+    window.onload = function() {
+      if (localStorage.getItem("refresh_token") === null || localStorage.getItem("refresh_token") === undefined) {
+        getCodeFromURL();
+      }
+      else
+      {
+          // Mostrar u ocultar secciones según el token de refresco
+        if (!localStorage.getItem("refresh_token")) {
+          permisos.style = "display: block;";
+          publicador_tik.style = "display: none;";
+        } else {
+          permisos.style = "display: none;";
+          publicador_tik.style = "display: block;";
+          creator_info()
+        }
+      }
+    };
+
+    
+
+    // Manejar la carga de la imagen
+    const uploadForm = document.getElementById('uploadForm');
+    uploadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const imageTitle = document.getElementById('imageTitle').value;
+      const imageDescription = document.getElementById('imageDescription').value;
+
+       publicar_imagen(imageTitle,imageDescription)
 
       
+    });
+  </script>
 
-        // Manejar la carga de la imagen
-        const uploadForm = document.getElementById('uploadForm');
-        uploadForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const imageTitle = document.getElementById('imageTitle').value;
-            const imageDescription = document.getElementById('imageDescription').value;
-
-           publicar_imagen(imageTitle,imageDescription)
-
-          
-        });
-    </script>
-
-    <!-- Incluir JS de Bootstrap 5 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funcion_publicar.js"></script>
+  <!-- Incluir JS de Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="funcion_publicar.js"></script>
 </body>
 </html>

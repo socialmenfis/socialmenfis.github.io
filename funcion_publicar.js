@@ -1,5 +1,8 @@
 function publicar_imagen(imageTitle, imageDescription)
 {
+    
+    // "By posting, you agree to TikTok's Music Usage Confirmation"
+    
     var contenido = `
             <style>
                 body {
@@ -99,6 +102,7 @@ function creator_info()
         // Aquí puedes manejar la respuesta con el objeto `data`
         let creatorData = JSON.parse(data);
         console.log(creatorData);
+        // revisar intentalo mas tarde y desactivar todo
         creatorData = creatorData.data;
 
         nickname.innerHTML = "NickName: " + creatorData.creator_nickname
