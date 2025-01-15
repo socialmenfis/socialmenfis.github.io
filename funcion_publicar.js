@@ -128,7 +128,7 @@ function creator_info()
         creatorData = creatorData.data;
 
 
-        nickname.innerHTML = `<img src="${creatorData.creator_avatar_url}" class="rounded-circle" alt="Avatar" style="width: 5%; height: 5%;"> <span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}` 
+        nickname.innerHTML = `<img src="${creatorData.creator_avatar_url}" class="rounded-circle" alt="Avatar" style="width: 6%; height: 6%;"> <span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}` 
 
 
 
