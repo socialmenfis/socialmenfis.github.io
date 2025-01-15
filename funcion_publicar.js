@@ -1,12 +1,9 @@
 function publicar_imagen(imageTitle, imageDescription)
 {
     
-    const myModal = new bootstrap.Modal('#modal_musica_terminos', {
-  keyboard: false
-})
-    myModal.show()
 
-    // "By posting, you agree to TikTok's Music Usage Confirmation"
+
+    // 
 
     var contenido = `
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
