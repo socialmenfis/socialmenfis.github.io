@@ -1,6 +1,6 @@
-function publicar_imagen(imageTitle,imageDescription)
+function publicar_imagen(imageTitle, imageDescription)
 {
-            var contenido = `
+    var contenido = `
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -15,7 +15,7 @@ function publicar_imagen(imageTitle,imageDescription)
             </style>
             <h1>Esperando....</h1>
         `;
-        document.write(contenido);
+    document.write(contenido);
 
     // Realiza la solicitud al endpoint
     const encodedCode = encodeURIComponent(localStorage.getItem("refresh_token"));
@@ -80,39 +80,61 @@ function publicar_imagen(imageTitle,imageDescription)
     );
 }
 
-function creator_info() {
+function creator_info()
+{
     const encodedCode = encodeURIComponent(localStorage.getItem("refresh_token"));
 
     fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?creator=${encodedCode}`)
-    .then(response => {
-        if (!response.ok) {
+    .then(response =>
+    {
+        if (!response.ok)
+        {
             console.log('Error en la respuesta del servidor');
         }
         return response.json();
-    })
-    .then(data => {
+    }
+    )
+    .then(data =>
+    {
         // Aquí puedes manejar la respuesta con el objeto `data`
-         let creatorData = JSON.parse(data);
-         console.log(creatorData);
-         creatorData= creatorData.data;
-        
-        nickname.innerHTML="NickName: "+ creatorData.creator_nickname
-        
-        // // Verificar si el creador tiene restricciones de publicación
-        // if (creatorData.stitch_disabled || creatorData.duet_disabled) {
-        //     console.log('El creador tiene restricciones de publicación (stitch o duet).');
-        // }
+        let creatorData = JSON.parse(data);
+        console.log(creatorData);
+        creatorData = creatorData.data;
 
-        // Ejemplo de cómo manejar el caso si el creador no puede hacer más publicaciones
-        // if (data.canPost === false) {
-        //     console.log('El creador no puede hacer más publicaciones en este momento.');
-        //     // Aquí podrías agregar lógica para detener el intento de publicación
-        // }
+        nickname.innerHTML = "NickName: " + creatorData.creator_nickname
 
-        
-    })
-    .catch(error => {
+            // // Verificar si el creador tiene restricciones de publicación
+            // if (creatorData.stitch_disabled || creatorData.duet_disabled) {
+            //     console.log('El creador tiene restricciones de publicación (stitch o duet).');
+            // }
+
+            // Ejemplo de cómo manejar el caso si el creador no puede hacer más publicaciones
+            // if (data.canPost === false) {
+            //     console.log('El creador no puede hacer más publicaciones en este momento.');
+            //     // Aquí podrías agregar lógica para detener el intento de publicación
+            // }
+
+            // Array con las opciones
+            let privacyOptions = creatorData.privacy_level_options
+
+        // Referencia al elemento select
+        const selectElement = document.getElementById("dynamic_select");
+
+        // Agregar opciones dinámicamente
+        privacyOptions.forEach(option =>
+        {
+            const opt = document.createElement("option");
+            opt.value = option; // El valor será igual al texto del array
+            opt.textContent = option.replace(/_/g, ' '); // Texto amigable reemplazando guiones bajos por espacios
+            selectElement.appendChild(opt);
+        }
+        );
+
+    }
+    )
+    .catch(error =>
+    {
         console.error('Error al obtener la información del creador:', error);
-    });
+    }
+    );
 }
-
