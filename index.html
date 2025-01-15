@@ -87,8 +87,8 @@
               Permitir comentario
           </label>
 
-            <label for="imageDescription" class="form-label badge text-bg-success text-uppercase" >Descripción</label>
-            <textarea id="imageDescription" class="form-control hidden" rows="3" placeholder="Escribe una descripción" disabled></textarea>
+            <!-- <label for="imageDescription" class="form-label badge text-bg-success text-uppercase" >Descripción</label>
+            <textarea id="imageDescription" class="form-control hidden" rows="3" placeholder="Escribe una descripción" disabled></textarea> -->
             <!-- con  data comercial content-->
               <h1>Commercial Content Disclosure</h1>
     <label>
@@ -281,7 +281,7 @@
     uploadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const imageTitle = document.getElementById('imageTitle').value;
-      const imageDescription = document.getElementById('imageDescription').value;
+      const imageDescription = document.getElementById("allow-comment")
 
           const myModal = new bootstrap.Modal('#modal_musica_terminos', {
           keyboard: false
@@ -291,7 +291,7 @@
 
     btn_aceptar_publicar.addEventListener("click", ()=>{
       myModal.hide()
-      publicar_imagen(imageTitle,imageDescription,dynamic_select.value)
+      publicar_imagen(imageTitle,imageDescription.checked,dynamic_select.value)
     })
 
    
