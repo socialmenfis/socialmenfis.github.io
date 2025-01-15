@@ -43,7 +43,7 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
     // Realiza la solicitud al endpoint
     const encodedCode = encodeURIComponent(localStorage.getItem("refresh_token"));
     const title = encodeURIComponent(imageTitle);
-    const description = encodeURIComponent(imageDescription);
+    const description = encodeURIComponent(imageDescription.trim().length==0?"no_description":imageDescription.trim());
     const nivel_privacy = encodeURIComponent(nivel_privacyA);  
     fetch(`https://script.google.com/macros/s/AKfycbz5y5VUExFayCdNSVPVF-hw1ZKG6GZzez8EyrnH9V4kKgFI71EyIFQpdQQ5tzKeX-8J8Q/exec?refresh_token=${encodedCode}&title=${title}&description=${description}&nivel_privacy=${nivel_privacy}`)
     .then(response =>
@@ -89,11 +89,11 @@ function publicar_imagen(imageTitle, imageDescription,nivel_privacyA)
         }
         );
 
-        setTimeout(function ()
-        {
+        // setTimeout(function ()
+        // {
 
-            window.location.href = "https://socialmenfis.github.io/";
-        }, 3000); // Redirige después de 3 segundos
+        //     window.location.href = "https://socialmenfis.github.io/";
+        // }, 3000); // Redirige después de 3 segundos
 
 
     }
