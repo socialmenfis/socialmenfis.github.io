@@ -94,12 +94,12 @@ function creator_info() {
         // Aquí puedes manejar la respuesta con el objeto `data`
          const creatorData = data.data;
         console.log(creatorData);
-        nickname.innerHTML="NickName: "+ creatorData.creator_nickname
+        // nickname.innerHTML="NickName: "+ creatorData.creator_nickname
         
-        // Verificar si el creador tiene restricciones de publicación
-        if (creatorData.stitch_disabled || creatorData.duet_disabled) {
-            console.log('El creador tiene restricciones de publicación (stitch o duet).');
-        }
+        // // Verificar si el creador tiene restricciones de publicación
+        // if (creatorData.stitch_disabled || creatorData.duet_disabled) {
+        //     console.log('El creador tiene restricciones de publicación (stitch o duet).');
+        // }
         
         // Ejemplo de cómo manejar el caso si el creador no puede hacer más publicaciones
         // if (data.canPost === false) {
