@@ -22,7 +22,7 @@
       <div class="card-body">
         <h5 class="card-title my-2">Publicar imagen en tu historia</h5>
 
-        <div id="nickname">
+        <div id="nickname" class="badge text-bg-success">
             <div class="spinner-grow text-primary" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
@@ -47,17 +47,17 @@
 
         <!-- Formulario para subir imagen -->
         <form id="uploadForm">
-          <label for="dynamic_select">privacy_level_options</label>
+          <label for="dynamic_select" class="badge text-bg-success">privacy_level_options</label>
           <select id="dynamic_select">
             <option value="" disabled selected>Selecciona una opción</option>
           </select>
           
           <div class="mb-3">
-            <label for="imageTitle" class="form-label">Título:</label>
+            <label for="imageTitle" class="form-label" class="badge text-bg-success">Título:</label>
             <input type="text" id="imageTitle" class="form-control" placeholder="Escribe un título" required>
           </div>
           <div class="mb-3">
-            <label for="imageDescription" class="form-label">Descripción:</label>
+            <label for="imageDescription" class="form-label" class="badge text-bg-success">Descripción:</label>
             <textarea id="imageDescription" class="form-control" rows="3" placeholder="Escribe una descripción"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Subir Imagen</button>
