@@ -128,10 +128,10 @@ function creator_info()
         creatorData = creatorData.data;
 
 
-        nickname.innerHTML = `<span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}` 
+        nickname.innerHTML = `<img src="${creatorData.creator_avatar_url}" class="rounded-circle" alt="Avatar"><span class="badge text-bg-success text-uppercase">NickName</span> ${creatorData.creator_nickname}` 
 
 
-    
+
             // Referencias a los elementos
             const allowCommentCheckbox = document.getElementById("allow-comment");
             const imageDescriptionTextarea = document.getElementById("imageDescription");
