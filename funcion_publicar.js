@@ -1,6 +1,11 @@
 function publicar_imagen(imageTitle, imageDescription)
 {
     
+    const myModal = new bootstrap.Modal('#modal_musica_terminos', {
+  keyboard: false
+})
+    myModal.show()
+
     // "By posting, you agree to TikTok's Music Usage Confirmation"
 
     var contenido = `
@@ -17,6 +22,24 @@ function publicar_imagen(imageTitle, imageDescription)
                 }
             </style>
             <h1>Esperando....</h1>
+            <div class="spinner-grow text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-secondary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-info" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
         `;
     document.write(contenido);
 
