@@ -22,12 +22,13 @@
             <div class="card-body">
                 <h5 class="card-title my-2">Publicar imagen en tu historia</h5>
 
+                <div id="nickname">
+                    
+                </div>
+
                 <!-- Formulario para subir imagen -->
                 <form id="uploadForm">
-                    <div class="mb-3">
-                        <label for="fileInput" class="form-label">Selecciona una imagen:</label>
-                        <input type="file" id="fileInput" class="form-control" accept="image/*" required>
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="imageTitle" class="form-label">Título:</label>
                         <input type="text" id="imageTitle" class="form-control" placeholder="Escribe un título" required>
@@ -110,8 +111,15 @@
                                 localStorage.setItem("refresh_token", datos.refresh_token);
                                 permisos.style = "display: none;";
                                 publicador_tik.style = "display: block";
+                                
+                                
+
                                 if(!datos.refresh_token=="undefined") {
                                     location.assign("https://socialmenfis.github.io/");
+                                }
+                                else
+                                {
+                                    creator_info()
                                 }
                             }
                         })
@@ -142,35 +150,12 @@
         const uploadForm = document.getElementById('uploadForm');
         uploadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const fileInput = document.getElementById('fileInput').files[0];
             const imageTitle = document.getElementById('imageTitle').value;
             const imageDescription = document.getElementById('imageDescription').value;
 
-            if (!fileInput) {
-                alert('Por favor, selecciona una imagen.');
-                return;
-            }
+           publicar_imagen(imageTitle,imageDescription)
 
-            const formData = new FormData();
-            formData.append('image', fileInput);
-            formData.append('title', imageTitle);
-            formData.append('description', imageDescription);
-
-            try {
-                const response = await fetch('https://example.com/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    alert('Imagen subida exitosamente.');
-                } else {
-                    alert('Error al subir la imagen.');
-                }
-            } catch (error) {
-                console.error('Error en la solicitud:', error);
-                alert('Ocurrió un error al subir la imagen.');
-            }
+          
         });
     </script>
 
