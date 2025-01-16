@@ -77,13 +77,13 @@ function publicar_imagen(imageTitle, imageDescription, nivel_privacyA)
            
             <h2>${data.error.message}</h2>
         `;
-            document.write(contenido);
+            document.body.innerHTML=contenido;
 
             setTimeout(function ()
             {
 
                 window.location.href = "https://socialmenfis.github.io/";
-            }, 3000);
+            }, 5000);
         }
         else
         {
@@ -104,7 +104,7 @@ function publicar_imagen(imageTitle, imageDescription, nivel_privacyA)
             <h1>Imagen subida!!</h1>
             <h2>La siguiente imagen se  genera en unos minutos</h2>
         `;
-            document.write(contenido);
+            document.body.innerHTML=contenido;
             fetch('https://script.google.com/macros/s/AKfycbxbHqkepU93mfDNncePX5pA1qUyDOOS6hVaHMGY1erqQ-oGej69DZsmcHn92j_yJNa-qA/exec')
             .then(response => response.json()) // Asumiendo que la respuesta es JSON
             .then(dataN =>
